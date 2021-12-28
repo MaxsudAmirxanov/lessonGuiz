@@ -6,6 +6,9 @@ data = {
     5: {"Сколько цветов в радуге ?": 7}
 }
 
+
+
+
 class Quiz:
     def __init__(self):
         self.true_answer = 0
