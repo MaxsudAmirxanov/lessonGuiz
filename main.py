@@ -24,7 +24,15 @@ class Quiz:
         else:
             print("Ответ неверный, тупица")
 
+    def asks_questions(self):
+        "Спрашивает вопросы"
+        pass
 
+    def output_of_correct_answers(self):
+        "Выводит количество правильных, и неправильных ответов"
+        pass
+
+    
 
 game = Quiz()
 
