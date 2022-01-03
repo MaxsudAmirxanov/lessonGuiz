@@ -13,6 +13,7 @@ class Quiz:
     def __init__(self):
         self.true_answer = 0
 
+        
     def check_the_answer(self, user_answer):
         "Проверка ответа"
         v = data[number]
@@ -22,19 +23,20 @@ class Quiz:
             print("Вы ответили правильно ")
             self.true_answer += 1 
         else:
-            print("Ответ неверный, тупица")
+            print(f"Ответ неверный, правильный ответ {i}")
 
-    def asks_questions(self):
-        "Спрашивает вопросы"
-        pass
 
     def output_of_correct_answers(self):
         "Выводит количество правильных, и неправильных ответов"
-        pass
+        max_data = max(data)
+        print(f"Вы дали {self.true_answer} верных ответов из {max_data}!\
+                \nКонец игры !!!")
 
     
 
+
 game = Quiz()
+
 
 loop = True
 number = 0
@@ -55,9 +57,7 @@ while loop:
             print('Введите число !')
 
         else:
-            new_loop = False
-       
+            new_loop = False      
     game.check_the_answer(user_answer)
 
-print(f"Вы дали {game.true_answer} верных ответов из 5!\
-    \nКонец игры !!!")
+game.output_of_correct_answers()
