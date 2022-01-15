@@ -6,17 +6,41 @@ data = {
     5: {"Сколько цветов в радуге ?": 7}
 }
 
-
+new_nuber = 0
 
 
 class Quiz:
     def __init__(self):
         self.true_answer = 0
+        self.new_number = 0
 
-        
+    def ask_question(self):
+        loop = True
+        number = 0
+        while loop:
+            number += 1
+            self.new_number = number
+            if number == 5:
+                loop = False
+            question_and_answer = data[number]
+            for answer in question_and_answer.keys():
+                print(answer)
+
+
+            new_loop = True
+            while new_loop:
+                try:
+                    user_answer = int(input("Введите ответ:\n"))
+                except ValueError:
+                    print('Введите число !')
+
+                else:
+                    new_loop = False
+            game.check_the_answer(user_answer)
+
     def check_the_answer(self, user_answer):
         "Проверка ответа"
-        v = data[number]
+        v = data[self.new_number]    
         for i in v.values():
             pass
         if user_answer == i:
@@ -38,26 +62,6 @@ class Quiz:
 game = Quiz()
 
 
-loop = True
-number = 0
-while loop:
-    number += 1
-    if number == 5:
-        loop = False
-    question_and_answer = data[number]
-    for answer in question_and_answer.keys():
-        print(answer)
 
-
-    new_loop = True
-    while new_loop:
-        try:
-            user_answer = int(input("Введите ответ:\n"))
-        except ValueError:
-            print('Введите число !')
-
-        else:
-            new_loop = False      
-    game.check_the_answer(user_answer)
-
+game.ask_question()
 game.output_of_correct_answers()
