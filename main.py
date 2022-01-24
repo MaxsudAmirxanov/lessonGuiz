@@ -14,29 +14,27 @@ class Quiz:
         self.true_answer = 0
         self.new_number = 0
 
-    def ask_question(self):
-        loop = True
-        number = 0
-        while loop:
-            number += 1
-            self.new_number = number
-            if number == 5:
-                loop = False
-            question_and_answer = data[number]
-            for answer in question_and_answer.keys():
-                print(answer)
+    def ask_question(self, number):
+        "Задать вопрос"
 
+        self.new_number = number
 
-            new_loop = True
-            while new_loop:
-                try:
-                    user_answer = int(input("Введите ответ:\n"))
-                except ValueError:
-                    print('Введите число !')
+        question_and_answer = data[number]
+        for answer in question_and_answer.keys():
+            print(answer)
 
-                else:
-                    new_loop = False
-            game.check_the_answer(user_answer)
+    def get_an_answer(self):
+        "Получение ответа"
+        new_loop = True
+        while new_loop:
+            try:
+                user_answer = int(input("Введите ответ:\n"))
+            except ValueError:
+                print('Введите число !')
+
+            else:
+                new_loop = False
+        game.check_the_answer(user_answer)
 
     def check_the_answer(self, user_answer):
         "Проверка ответа"
@@ -61,7 +59,15 @@ class Quiz:
 
 game = Quiz()
 
+number = 0
+loop = True
+while loop:
+    number += 1
+    game.ask_question(number)
+    game.get_an_answer()
+
+    if number == 5:
+        loop = False
 
 
-game.ask_question()
 game.output_of_correct_answers()
