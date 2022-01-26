@@ -1,3 +1,6 @@
+from re import T
+
+
 data = {
     1: {"Сколько байт в килобайте ?": 1024},
     2: {"В каком году Гагарин полетел в космос?": 1961},
@@ -14,27 +17,15 @@ class Quiz:
         self.true_answer = 0
         self.new_number = 0
 
-    def ask_question(self, number):
+    def ask_question(self):
         "Задать вопрос"
 
-        self.new_number = number
+        self.new_number += 1
 
-        question_and_answer = data[number]
+        question_and_answer = data[self.new_number]
         for answer in question_and_answer.keys():
             print(answer)
 
-    def get_an_answer(self):
-        "Получение ответа"
-        new_loop = True
-        while new_loop:
-            try:
-                user_answer = int(input("Введите ответ:\n"))
-            except ValueError:
-                print('Введите число !')
-
-            else:
-                new_loop = False
-        game.check_the_answer(user_answer)
 
     def check_the_answer(self, user_answer):
         "Проверка ответа"
@@ -48,14 +39,6 @@ class Quiz:
             print(f"Ответ неверный, правильный ответ {i}")
 
 
-    def output_of_correct_answers(self):
-        "Выводит количество правильных, и неправильных ответов"
-        max_data = max(data)
-        print(f"Вы дали {self.true_answer} верных ответов из {max_data}!\
-                \nКонец игры !!!")
-
-    
-
 
 game = Quiz()
 
@@ -63,11 +46,23 @@ number = 0
 loop = True
 while loop:
     number += 1
-    game.ask_question(number)
-    game.get_an_answer()
+    game.ask_question()
+    
+    new_loop = True
+    while new_loop:
+        try:
+            user_answer = int(input("Введите ответ:\n"))
+        except ValueError:
+            print('Введите число !')
+
+        else:
+            new_loop = False
+    game.check_the_answer(user_answer)
 
     if number == 5:
         loop = False
 
 
-game.output_of_correct_answers()
+max_data = max(data)
+print(f"Вы дали {game.true_answer} верных ответов из {max_data}!\
+        \nКонец игры !!!")
