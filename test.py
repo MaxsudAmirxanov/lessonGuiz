@@ -1,23 +1,8 @@
-# class Test():
-#     def __init__(self):
-#         pass
-#     @staticmethod
-#     def nuber(a, b):
-#         print(a + b)
-#     @staticmethod
-#     def kub():
-#         a = int(input())
-#         b = int(input())
-#         user_1.nuber(a, b)
+def test():
+    a = 2 + 4
+    y = 2 + 5
+    z = 2 + 6
+    return a, y, z
 
-# user_1 = Test()
-
-# user_1.kub()
-loop = True
-number = 0
-while loop:
-    number += 1
-    print(number)
-    if number == 100:
-        loop = False
-
+b = test()
+print(b)
