@@ -1,6 +1,3 @@
-from re import T
-
-
 data = {
     1: {"Сколько байт в килобайте ?": 1024},
     2: {"В каком году Гагарин полетел в космос?": 1961},
@@ -9,27 +6,28 @@ data = {
     5: {"Сколько цветов в радуге ?": 7}
 }
 
-new_nuber = 0
 
 
 class Quiz:
     def __init__(self):
         self.true_answer = 0
         self.new_number = 0
+        self.questions_answers = data
+
 
     def ask_question(self):
         "Задать вопрос"
 
         self.new_number += 1
 
-        question_and_answer = data[self.new_number]
+        question_and_answer = self.questions_answers[self.new_number]
         for answer in question_and_answer.keys():
             print(answer)
 
 
     def check_the_answer(self, user_answer):
         "Проверка ответа"
-        v = data[self.new_number]    
+        v = self.questions_answers[self.new_number]    
         for i in v.values():
             pass
         if user_answer == i:
