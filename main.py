@@ -1,40 +1,38 @@
-from multiprocessing.connection import answer_challenge
-
 
 data = {
-    1: {"Сколько байт в килобайте ?": 1024},
-    2: {"В каком году Гагарин полетел в космос?": 1961},
-    3: {"Скольк дней в високосном году ?": 366},
-    4: {"Какая дата Куликовской битвы ?": 1380},
-    5: {"Сколько цветов в радуге ?": 7}
+    "Сколько байт в килобайте ?": 1024,
+    "В каком году Гагарин полетел в космос?": 1961,
+    "Скольк дней в високосном году ?": 366,
+    "Какая дата Куликовской битвы ?": 1380,
+    "Сколько цветов в радуге ?": 7
 }
 
 
 class Quiz:
     def __init__(self):
         self.point = 0
-        self.order_question = 0
+        self.some_index = 0
         self.questions_answers = data
 
 
 
     def ask_question(self):
         "Задать вопрос"
+        current_questions = list(self.questions_answers.keys())[self.some_index]
+        global new_current_questions
+        new_current_questions = current_questions
 
-        self.order_question += 1
-
-        question_and_answer = self.questions_answers[self.order_question]
-        for answer in question_and_answer.keys():
-            print(answer)
+        return True
 
 
 
     def check_the_answer(self, user_answer):
         "Проверка ответа"
-        true_question_and_answer = self.questions_answers[self.order_question]    
-        for true_answer in true_question_and_answer.values(): 
-            global new_true_answer
-            new_true_answer = true_answer
+        true_answer = list(self.questions_answers.values())[self.some_index]
+
+        global new_true_answer
+        new_true_answer = true_answer
+        self.some_index += 1
         
         if user_answer == true_answer:
             self.point += 1 
@@ -49,7 +47,8 @@ number = 0
 loop = True
 while loop:
     number += 1
-    game.ask_question()
+    if game.ask_question():
+        print(new_current_questions)
 
 
     new_loop = True
@@ -72,6 +71,6 @@ while loop:
         loop = False
 
 
-max_data = max(data)
-print(f"Вы дали {game.point} верных ответов, из {max_data}!\
+
+print(f"Вы дали {game.point} верных ответов, из {len(data)}!\
         \nКонец игры !!!")

@@ -1,8 +1,11 @@
-def test():
-    a = 2 + 4
-    y = 2 + 5
-    z = 2 + 6
-    return a, y, z
+data = {
+    "Сколько байт в килобайте ?": 1024,
+    "В каком году Гагарин полетел в космос?": 1961,
+    "Скольк дней в високосном году ?": 366,
+    "Какая дата Куликовской битвы ?": 1380,
+    "Сколько цветов в радуге ?": 7
+}
 
-b = test()
-print(b)
+some_index = 0
+current_questions = list(data.keys())[some_index]
+print(current_questions)
