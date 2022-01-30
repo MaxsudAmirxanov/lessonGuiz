@@ -18,23 +18,17 @@ class Quiz:
 
     def ask_question(self):
         "Задать вопрос"
-        global current_questions
         current_questions = list(self.questions_answers.keys())[self.some_index]
-        return True
+        return current_questions
 
 
 
     def check_the_answer(self, user_answer):
         "Проверка ответа"
-        global true_answer
         true_answer = list(self.questions_answers.values())[self.some_index]
         self.some_index += 1
-        
-        if user_answer == true_answer:
-            self.point += 1 
-            return True
-        else:
-            return False
+        return true_answer
+
 
              
 game = Quiz()
@@ -43,8 +37,8 @@ number = 0
 loop = True
 while loop:
     number += 1
-    if game.ask_question():
-        print(current_questions)
+    current_questions = game.ask_question()
+    print(current_questions)
 
     new_loop = True
     while new_loop:
@@ -56,7 +50,9 @@ while loop:
             new_loop = False
     
 
-    if game.check_the_answer(user_answer):
+    true_answer = game.check_the_answer(user_answer)
+    if user_answer == true_answer:
+        game.point += 1
         print("Вы ответили правильно ")
     else:
         print(f"Ответ неверный, правильный ответ {true_answer}")
