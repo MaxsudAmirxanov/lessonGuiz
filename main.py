@@ -9,29 +9,29 @@ data = {
 
 
 class Quiz:
-    def __init__(self):
+    def __init__(self, data):
         self.point = 0
-        self.some_index = 0
+        self.some_index = -1
         self.questions_answers = data
 
 
 
     def ask_question(self):
         "Задать вопрос"
+        self.some_index += 1
         current_questions = list(self.questions_answers.keys())[self.some_index]
         return current_questions
 
 
 
-    def check_the_answer(self, user_answer):
+    def check_the_answer(self):
         "Проверка ответа"
         true_answer = list(self.questions_answers.values())[self.some_index]
-        self.some_index += 1
         return true_answer
 
 
              
-game = Quiz()
+game = Quiz(data)
 
 number = 0
 loop = True
@@ -50,7 +50,7 @@ while loop:
             new_loop = False
     
 
-    true_answer = game.check_the_answer(user_answer)
+    true_answer = game.check_the_answer()
     if user_answer == true_answer:
         game.point += 1
         print("Вы ответили правильно ")
