@@ -19,15 +19,13 @@ class Quiz:
     def ask_question(self):
         "Задать вопрос"
         self.some_index += 1
-        current_questions = list(self.questions_answers.keys())[self.some_index]
-        return current_questions
+        return list(self.questions_answers.keys())[self.some_index]
 
 
 
     def check_the_answer(self):
         "Проверка ответа"
-        true_answer = list(self.questions_answers.values())[self.some_index]
-        return true_answer
+        return list(self.questions_answers.values())[self.some_index]
 
 
              
